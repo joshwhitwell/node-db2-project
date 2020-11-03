@@ -14,4 +14,14 @@ router.get('/', (req, res) => {
         })
 })
 
+router.post('/', (req, res) => {
+    db('cars').insert(req.body)
+        .then(data => {
+            res.json(data)
+        })
+        .catch(error => {
+            res.json({ error: error.message })
+        })
+})
+
 module.exports = router
