@@ -16,11 +16,11 @@ router.get('/', (req, res) => {
 
 router.post('/', (req, res) => {
     db('cars').insert(req.body)
-        .then(data => {
-            res.json(data)
+        .then(([id]) => {
+            res.status(201).json({ message: 'Success', carId: id })
         })
         .catch(error => {
-            res.json({ error: error.message })
+            res.status(500).json({ error: error.message })
         })
 })
 
